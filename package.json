@@ -1,81 +1,24 @@
 {
-  "_args": [
-    [
-      "twitter",
-      "/Users/JWood/Documents/GW Coding Bootcamp/Week 10/Homework-LIRI/LiriNode"
-    ]
-  ],
-  "_from": "twitter@latest",
-  "_inCache": true,
-  "_installable": true,
-  "_location": "/twitter",
-  "_nodeVersion": "8.0.0",
-  "_npmOperationalInternal": {
-    "host": "s3://npm-registry-packages",
-    "tmp": "tmp/twitter-1.7.1.tgz_1497354516539_0.7911267257295549"
-  },
-  "_npmUser": {
-    "email": "hi@desmondmorris.com",
-    "name": "desmondmorris"
-  },
-  "_npmVersion": "4.6.1",
-  "_phantomChildren": {},
-  "_requested": {
-    "name": "twitter",
-    "raw": "twitter",
-    "rawSpec": "",
-    "scope": null,
-    "spec": "latest",
-    "type": "tag"
-  },
-  "_requiredBy": [
-    "#USER"
-  ],
-  "_resolved": "https://registry.npmjs.org/twitter/-/twitter-1.7.1.tgz",
-  "_shasum": "0762378f1dc1c050e48f666aca904e24b1a962f4",
-  "_shrinkwrap": null,
-  "_spec": "twitter",
-  "_where": "/Users/JWood/Documents/GW Coding Bootcamp/Week 10/Homework-LIRI/LiriNode",
-  "author": "Desmond Morris <hi@desmondmorris.com>",
-  "bugs": {
-    "url": "https://github.com/desmondmorris/node-twitter/issues"
-  },
+  "name": "joshliri",
+  "version": "1.0.0",
+  "description": "sadf",
+  "main": "key.js",
   "dependencies": {
-    "deep-extend": "^0.5.0",
-    "request": "^2.72.0"
+    "request": "^2.81.0",
+    "twitter": "^1.7.1"
   },
-  "description": "Twitter API client library for node.js",
-  "devDependencies": {
-    "eslint": "^3.12.0",
-    "mocha": "^3.2.0",
-    "nock": "^9.0.2"
+  "devDependencies": {},
+  "scripts": {
+    "test": "asdf"
   },
-  "directories": {},
-  "dist": {
-    "shasum": "0762378f1dc1c050e48f666aca904e24b1a962f4",
-    "tarball": "https://registry.npmjs.org/twitter/-/twitter-1.7.1.tgz"
-  },
-  "homepage": "https://github.com/desmondmorris/node-twitter",
-  "keywords": [
-    "twitter",
-    "streaming",
-    "oauth"
-  ],
-  "license": "MIT",
-  "main": "./lib/twitter",
-  "maintainers": [
-    "reconbot <wizard@roborooter.com>",
-    "desmondmorris <hi@desmondmorris.com>"
-  ],
-  "name": "twitter",
-  "optionalDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/desmondmorris/node-twitter.git"
+    "url": "git+https://github.com/wood2jp2/LiriNode.git"
   },
-  "scripts": {
-    "lint": "eslint test/*.js lib/*.js",
-    "test": "npm run lint && mocha"
+  "author": "josh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wood2jp2/LiriNode/issues"
   },
-  "version": "1.7.1"
+  "homepage": "https://github.com/wood2jp2/LiriNode#readme"
 }

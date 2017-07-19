@@ -1,21 +1,24 @@
-var twitter = require('./node_modules/twitter')
-var twitResponse = require('./key');
-var ck = twitResponse.twitterKeys.consumer_key;
-var cs = twitResponse.twitterKeys.consumer_secret;
-var atk = twitResponse.twitterKeys.access_token_key;
-var ats = twitResponse.twitterKeys.access_token_secret;
+var Twitter = require('twitter');
+var twitterKeys = require('./key').twitterKeys;
 
-var client = new twitter(twitResponse);
+var client = new Twitter(twitterKeys);
 
 var params = {
   screen_name: 'WhatWoodJDubDo',
-  count: 20,
+  count: 1
 };
 
-client.get('statuses/user_timeline', params, function(error, tweets, response) {
-  if (!error) {
-    console.log(response);
-  } else {
-    console.log(error);
-  }
-});
+var userInput = process.argv[2];
+
+if (userInput === "my-tweets") {
+  client.get('statuses/user_timeline', params, function(error, tweets, response) {
+    if (!error && response.statusCode === 200) {
+      // console.log(tweets);
+      // console.log(response);
+      // console.
+      console.log(tweets[0].created_at);
+    } else {
+      console.log(error);
+    }
+  })
+};
