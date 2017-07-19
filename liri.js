@@ -5,7 +5,7 @@ var client = new Twitter(twitterKeys);
 
 var params = {
   screen_name: 'WhatWoodJDubDo',
-  count: 1
+  count: 20
 };
 
 var userInput = process.argv[2];
@@ -16,7 +16,9 @@ if (userInput === "my-tweets") {
       // console.log(tweets);
       // console.log(response);
       // console.
-      console.log(tweets[0].created_at);
+      for (var i = 0; i < 20; i++) {
+        console.log(tweets[i].text);
+      }
     } else {
       console.log(error);
     }
