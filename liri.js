@@ -35,7 +35,7 @@ var nodinIt = {
     var Spotify = require('node-spotify-api');
     var spotifyKeys = require('./key').spotifyKeys;
     var spotify = new Spotify(spotifyKeys);
-
+    console.log(this.userSongChoice);
     spotify.search({
       type: 'track',
       query: this.userSongChoice
@@ -44,6 +44,7 @@ var nodinIt = {
         return console.log('Error occurred: ' + err);
       }
       // Console log artist, song name, preview link (external URL), song album
+      // console.log(this.userSongChoice);
       console.log("Artist: " + data.tracks.items[0].artists[0].name);
       // ASK VINNY why i can't simply log '(this.userSongChoice)', even though we are calling function outside of object (still accessing object)
       console.log(nodinIt.userSongChoice);
@@ -72,6 +73,24 @@ var nodinIt = {
       console.log('Actors: ' + body.Actors);
     });
   },
+
+  doWhatItSays: function() {
+    var fs = require('fs');
+
+    fs.readFile("random.txt", 'utf8', function(error, data) {
+
+      var dataArray = data.split(',');
+
+      if (error) {
+        return console.log(error);
+      }
+      this.userCommand = dataArray[0];
+      this.userSongChoice = dataArray[1];
+      console.log(this.userCommand);
+      console.log(this.userSongChoice);
+      nodinIt.getSpotify();
+    })
+  }
 };
 
 if (nodinIt.userCommand === "my-tweets") {
@@ -80,4 +99,6 @@ if (nodinIt.userCommand === "my-tweets") {
   nodinIt.getSpotify();
 } else if (nodinIt.userCommand === 'movie-this') {
   nodinIt.getOMDB();
+} else if (nodinIt.userCommand === 'do-what-it-says') {
+  nodinIt.doWhatItSays();
 }
