@@ -2,7 +2,7 @@
 var nodinIt = {
   // global variables, continuations of node array
   userCommand: process.argv[2],
-  userSongChoice: process.argv[3] || 'The Sign',
+  userSongChoice: process.argv[3],
   userMovie: process.argv[3] || 'Mr. Nobody',
 
   getTwitter: function() {
@@ -30,15 +30,15 @@ var nodinIt = {
     });
   },
 
-  getSpotify: function() {
+  getSpotify: function(saySong) {
     // same variables / syntax essentially as above
     var Spotify = require('node-spotify-api');
     var spotifyKeys = require('./key').spotifyKeys;
     var spotify = new Spotify(spotifyKeys);
-    console.log(this.userSongChoice);
+
     spotify.search({
       type: 'track',
-      query: this.userSongChoice
+      query: saySong || 'The Sign'
     }, function(err, data) {
       if (err) {
         return console.log('Error occurred: ' + err);
@@ -46,8 +46,7 @@ var nodinIt = {
       // Console log artist, song name, preview link (external URL), song album
       // console.log(this.userSongChoice);
       console.log("Artist: " + data.tracks.items[0].artists[0].name);
-      // ASK VINNY why i can't simply log '(this.userSongChoice)', even though we are calling function outside of object (still accessing object)
-      console.log(nodinIt.userSongChoice);
+      console.log("Song: " + saySong);
       console.log("Album: " + data.tracks.items[0].album.name);
       console.log("Preview Link: " + data.tracks.items[0].external_urls.spotify);
     });
@@ -76,19 +75,14 @@ var nodinIt = {
 
   doWhatItSays: function() {
     var fs = require('fs');
-
     fs.readFile("random.txt", 'utf8', function(error, data) {
-
       var dataArray = data.split(',');
-
       if (error) {
         return console.log(error);
       }
-      this.userCommand = dataArray[0];
-      this.userSongChoice = dataArray[1];
-      console.log(this.userCommand);
-      console.log(this.userSongChoice);
-      nodinIt.getSpotify();
+      sayCommand = dataArray[0];
+      saySong = dataArray[1];
+      nodinIt.getSpotify(saySong);
     })
   }
 };
@@ -96,7 +90,7 @@ var nodinIt = {
 if (nodinIt.userCommand === "my-tweets") {
   nodinIt.getTwitter();
 } else if (nodinIt.userCommand === 'spotify-this-song') {
-  nodinIt.getSpotify();
+  nodinIt.getSpotify(nodinIt.userSongChoice);
 } else if (nodinIt.userCommand === 'movie-this') {
   nodinIt.getOMDB();
 } else if (nodinIt.userCommand === 'do-what-it-says') {
