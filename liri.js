@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 // Object
 var nodinIt = {
   // global variables, continuations of node array
@@ -23,7 +25,16 @@ var nodinIt = {
         // counting thru and printing tweets
         for (var i = 0; i < 20; i++) {
           console.log(tweets[i].text);
-        }
+
+          var j = i + 1;
+          var printTweets = "\nTweet #" + j + ": " + tweets[i].text;
+          fs.appendFile("log.txt", printTweets, 'utf8', function(err) {
+            if (err) {
+              console.log(err);
+            }
+          });
+        };
+        console.log('Data was appended to log.txt file!');
       } else {
         console.log(error);
       }
@@ -45,10 +56,22 @@ var nodinIt = {
       }
       // Console log artist, song name, preview link (external URL), song album
       // console.log(this.userSongChoice);
-      console.log("Artist: " + data.tracks.items[0].artists[0].name);
-      console.log("Song: " + saySong);
-      console.log("Album: " + data.tracks.items[0].album.name);
-      console.log("Preview Link: " + data.tracks.items[0].external_urls.spotify);
+
+      var artist = "\nArtist: " + data.tracks.items[0].artists[0].name;
+      var song = "\nSong: " + saySong;
+      var album = "\nAlbum: " + data.tracks.items[0].album.name;
+      var previewLink = "\nPreview Link: " + data.tracks.items[0].external_urls.spotify;
+      console.log(artist);
+      console.log(song);
+      console.log(album);
+      console.log(previewLink);
+
+      var printMusic = artist + song + album + previewLink;
+      fs.appendFile("log.txt", printMusic, 'utf8', function(err) {
+        if (err) {
+          console.log(err)
+        }
+      });
     });
   },
 
@@ -62,14 +85,22 @@ var nodinIt = {
       console.log('error:', error); // Print the error if one occurred
       console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
 
-      console.log('Movie Title: ' + body.Title);
-      console.log('Year: ' + body.Year);
-      console.log('IMDB Rating: ' + body.imdbRating);
-      console.log('Rotten Tomatoes: ' + body.Ratings[1].Value);
-      console.log('Country: ' + body.Country);
-      console.log('Language: ' + body.Language);
-      console.log('Plot: ' + body.Plot);
-      console.log('Actors: ' + body.Actors);
+      var movieTitle = '\nMovie Title: ' + body.Title;
+      var year = '\nYear: ' + body.Year;
+      var imdbRating = '\nIMDB Rating: ' + body.imdbRating;
+      var rottenTomatoes = '\nRotten Tomatoes: ' + body.Ratings[1].Value;
+      var country = '\nCountry: ' + body.Country;
+      var language = '\nLanguage: ' + body.Language;
+      var plot = '\nPlot: ' + body.Plot;
+      var actors = '\nActors: ' + body.Actors;
+      var allMovieData = movieTitle + year + imdbRating + rottenTomatoes + country + language + plot + actors;
+      console.log(allMovieData);
+
+      fs.appendFile('log.txt', allMovieData, 'utf8', function(err) {
+        if (err) {
+          console.log(err);
+        }
+      })
     });
   },
 
